@@ -110,6 +110,8 @@ impl Runner {
         fs::write(path!(project.dir / "Cargo.toml"), manifest_toml)?;
         fs::write(path!(project.dir / "main.rs"), b"fn main() {}\n")?;
 
+        fs::remove_file(path!(project.dir / "Cargo.lock"))?;
+
         cargo::build_dependencies(&project)?;
 
         Ok(project)
